@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Device Management Admin</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>Device Management — Admin Panel</h1>
+
+<!-- Section 1: Login -->
+<section id="login-section">
+    <h2>Admin Login</h2>
+    <input type="text" id="login-username" placeholder="Username">
+    <input type="password" id="login-password" placeholder="Password">
+    <button onclick="handleLogin()">Login</button>
+    <p id="login-status"></p>
+</section>
+
+<!-- Section 2: Send Command (hidden until logged in) -->
+<section id="command-section" class="hidden">
+    <h2>Send Command</h2>
+    <input type="number" id="command-device-id" placeholder="Device ID">
+    <input type="text" id="command-text" placeholder="Command text">
+    <button onclick="handleSendCommand()">Send Command</button>
+    <p id="command-status"></p>
+</section>
+
+<!-- Section 3: View History (hidden until logged in) -->
+<section id="history-section" class="hidden">
+    <h2>Command History</h2>
+    <input type="number" id="history-device-id" placeholder="Device ID">
+    <button onclick="handleViewHistory()">View History</button>
+    <table id="history-table">
+        <thead>
+        <tr><th>Command ID</th><th>Status</th><th>Changed At</th></tr>
+        </thead>
+        <tbody id="history-body"></tbody>
+    </table>
+</section>
+
+<!-- Section 4: Logout -->
+<section id="logout-section" class="hidden">
+    <button onclick="handleLogout()">Logout</button>
+</section>
+
+<!-- Section: Create Admin (hidden until logged in) -->
+<section id="create-admin-section" class="hidden">
+    <h2>Create New Admin</h2>
+    <input type="text" id="new-admin-username" placeholder="New admin username">
+    <input type="password" id="new-admin-password" placeholder="New admin password">
+    <button onclick="handleCreateAdmin()">Create Admin</button>
+    <p id="create-admin-status"></p>
+</section>
+
+<!-- Section: Revoke Device Token (hidden until logged in) -->
+<section id="revoke-section" class="hidden">
+    <h2>Revoke Device Token</h2>
+    <input type="number" id="revoke-device-id" placeholder="Device ID">
+    <button onclick="handleRevoke()">Revoke Token</button>
+    <p id="revoke-status"></p>
+</section>
+
+<!-- Section 4: Logout -->
+<section id="logout-section" class="hidden">
+    <button onclick="handleLogout()">Logout</button>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
