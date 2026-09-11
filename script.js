@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:8081/device_server_war_exploded";
+const BASE_URL = "https://amply-lagoon-regally.ngrok-free.dev/device_server_war_exploded";
 
 let adminToken = null;
 

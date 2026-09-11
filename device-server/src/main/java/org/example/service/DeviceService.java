@@ -9,7 +9,7 @@ public class DeviceService {
 
     private final DeviceDAO deviceDAO = new DeviceDAO();
 
-    
+
     private static final String SERVER_PSK = System.getenv("DEVICE_PSK");
 
     public String register(RegisterRequest request) throws Exception {
