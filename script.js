@@ -10,7 +10,10 @@ async function handleLogin() {
     try {
         const response = await fetch(`${BASE_URL}/admin/login`, {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers: {
+                "Content-Type": "application/json",
+                "ngrok-skip-browser-warning": "true"
+            },
             body: JSON.stringify({ username, password })
         });
 
@@ -32,6 +35,8 @@ function showLoggedInSections() {
     document.getElementById("login-section").classList.add("hidden");
     document.getElementById("command-section").classList.remove("hidden");
     document.getElementById("history-section").classList.remove("hidden");
+    document.getElementById("create-admin-section").classList.remove("hidden");
+    document.getElementById("revoke-section").classList.remove("hidden");
     document.getElementById("logout-section").classList.remove("hidden");
 }
 
@@ -40,6 +45,8 @@ function handleLogout() {
     document.getElementById("login-section").classList.remove("hidden");
     document.getElementById("command-section").classList.add("hidden");
     document.getElementById("history-section").classList.add("hidden");
+    document.getElementById("create-admin-section").classList.add("hidden");
+    document.getElementById("revoke-section").classList.add("hidden");
     document.getElementById("logout-section").classList.add("hidden");
     document.getElementById("login-status").textContent = "";
 }
@@ -54,7 +61,8 @@ async function handleSendCommand() {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": "Bearer " + adminToken
+                "Authorization": "Bearer " + adminToken,
+                "ngrok-skip-browser-warning": "true"
             },
             body: JSON.stringify({
                 deviceId: parseInt(deviceId),
@@ -82,7 +90,10 @@ async function handleViewHistory() {
     try {
         const response = await fetch(`${BASE_URL}/admin/history?deviceId=${deviceId}`, {
             method: "GET",
-            headers: { "Authorization": "Bearer " + adminToken }
+            headers: {
+                "Authorization": "Bearer " + adminToken,
+                "ngrok-skip-browser-warning": "true"
+            }
         });
 
         const data = await response.json();
@@ -101,26 +112,6 @@ async function handleViewHistory() {
     }
 }
 
-function showLoggedInSections() {
-    document.getElementById("login-section").classList.add("hidden");
-    document.getElementById("command-section").classList.remove("hidden");
-    document.getElementById("history-section").classList.remove("hidden");
-    document.getElementById("create-admin-section").classList.remove("hidden");
-    document.getElementById("revoke-section").classList.remove("hidden");
-    document.getElementById("logout-section").classList.remove("hidden");
-}
-
-function handleLogout() {
-    adminToken = null;
-    document.getElementById("login-section").classList.remove("hidden");
-    document.getElementById("command-section").classList.add("hidden");
-    document.getElementById("history-section").classList.add("hidden");
-    document.getElementById("create-admin-section").classList.add("hidden");
-    document.getElementById("revoke-section").classList.add("hidden");
-    document.getElementById("logout-section").classList.add("hidden");
-    document.getElementById("login-status").textContent = "";
-}
-
 async function handleCreateAdmin() {
     const username = document.getElementById("new-admin-username").value;
     const password = document.getElementById("new-admin-password").value;
@@ -131,7 +122,8 @@ async function handleCreateAdmin() {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": "Bearer " + adminToken
+                "Authorization": "Bearer " + adminToken,
+                "ngrok-skip-browser-warning": "true"
             },
             body: JSON.stringify({ username, password })
         });
@@ -159,7 +151,8 @@ async function handleRevoke() {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": "Bearer " + adminToken
+                "Authorization": "Bearer " + adminToken,
+                "ngrok-skip-browser-warning": "true"
             },
             body: JSON.stringify({ deviceId: parseInt(deviceId) })
         });
