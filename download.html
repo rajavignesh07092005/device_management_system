@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Download Device Agent</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>Download the Device Agent</h1>
+
+<section>
+    <h2>Step 1 — Download the agent</h2>
+    <p>
+        <a href="https://github.com/rajavignesh07092005/device_management_system/releases/download/v1.0/device-agent.exe">
+            <button>Download device-agent.exe</button>
+        </a>
+    </p>
+</section>
+
+<section>
+    <h2>Step 2 — Run it</h2>
+    <p>Double-click <code>device-agent.exe</code> to run it, or open a terminal in the folder where you saved it and run:</p>
+    <pre style="background:#eee; padding:10px; border-radius:4px;">device-agent.exe</pre>
+    <p>
+        Windows may show a <b>"Windows protected your PC"</b> warning, since this executable
+        isn't digitally signed. This is expected for a student/personal project — click
+        <b>"More info" → "Run anyway"</b> to proceed.
+    </p>
+</section>
+
+<section>
+    <h2>What happens next</h2>
+    <p>
+        The agent will automatically register itself with the live demo server and appear
+        in the admin dashboard's device list. It will send a heartbeat and check for commands
+        periodically.
+    </p>
+</section>
+
+<section>
+    <h2>Notes</h2>
+    <ul>
+        <li>This agent connects to a live demo server running on the developer's laptop via a temporary tunnel — it may occasionally be offline.</li>
+        <li>The pre-shared key (PSK) is already built into this executable for demo purposes.</li>
+    </ul>
+</section>
+
+<p><a href="index.html">← Back to Admin Panel</a></p>
+</body>
+</html>
