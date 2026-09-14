@@ -5,6 +5,7 @@ import org.example.util.DatabaseConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.List;
 
 public class DeviceDAO {
 
@@ -88,6 +89,37 @@ public class DeviceDAO {
             statement.setString(3, newToken);
             statement.setInt(4, existingDeviceId);
             statement.executeUpdate();
+        }
+    }
+
+    public List<DeviceSummary> getAllDevices() throws Exception {
+        String sql = "SELECT id, hostname, ip_address, last_seen FROM devices ORDER BY id";
+        List<DeviceSummary> results = new java.util.ArrayList<>();
+        try (Connection connection = DatabaseConnection.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql);
+             ResultSet rs = statement.executeQuery()) {
+            while (rs.next()) {
+                results.add(new DeviceSummary(
+                        rs.getInt("id"),
+                        rs.getString("hostname"),
+                        rs.getString("ip_address"),
+                        rs.getTimestamp("last_seen") != null ? rs.getTimestamp("last_seen").toString() : "Never"
+                ));
+            }
+        }
+        return results;
+    }
+
+    public static class DeviceSummary {
+        public final int id;
+        public final String hostname;
+        public final String ipAddress;
+        public final String lastSeen;
+        public DeviceSummary(int id, String hostname, String ipAddress, String lastSeen) {
+            this.id = id;
+            this.hostname = hostname;
+            this.ipAddress = ipAddress;
+            this.lastSeen = lastSeen;
         }
     }
 }

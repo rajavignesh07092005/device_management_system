@@ -19,19 +19,21 @@
     <p id="login-status"></p>
 </section>
 
-<!-- Section 2: Send Command (hidden until logged in) -->
+<!-- Section 2: Send Command -->
 <section id="command-section" class="hidden">
     <h2>Send Command</h2>
-    <input type="number" id="command-device-id" placeholder="Device ID">
+    <label for="command-device-id">Select Device</label>
+    <select id="command-device-id"></select>
     <input type="text" id="command-text" placeholder="Command text">
     <button onclick="handleSendCommand()">Send Command</button>
     <p id="command-status"></p>
 </section>
 
-<!-- Section 3: View History (hidden until logged in) -->
+<!-- Section 3: View History -->
 <section id="history-section" class="hidden">
     <h2>Command History</h2>
-    <input type="number" id="history-device-id" placeholder="Device ID">
+    <label for="history-device-id">Select Device</label>
+    <select id="history-device-id"></select>
     <button onclick="handleViewHistory()">View History</button>
     <table id="history-table">
         <thead>
@@ -41,12 +43,7 @@
     </table>
 </section>
 
-<!-- Section 4: Logout -->
-<section id="logout-section" class="hidden">
-    <button onclick="handleLogout()">Logout</button>
-</section>
-
-<!-- Section: Create Admin (hidden until logged in) -->
+<!-- Section 4: Create Admin -->
 <section id="create-admin-section" class="hidden">
     <h2>Create New Admin</h2>
     <input type="text" id="new-admin-username" placeholder="New admin username">
@@ -55,15 +52,16 @@
     <p id="create-admin-status"></p>
 </section>
 
-<!-- Section: Revoke Device Token (hidden until logged in) -->
+<!-- Section 5: Revoke Device Token -->
 <section id="revoke-section" class="hidden">
     <h2>Revoke Device Token</h2>
-    <input type="number" id="revoke-device-id" placeholder="Device ID">
+    <label for="revoke-device-id">Select Device</label>
+    <select id="revoke-device-id"></select>
     <button onclick="handleRevoke()">Revoke Token</button>
     <p id="revoke-status"></p>
 </section>
 
-<!-- Section 4: Logout -->
+<!-- Section 6: Logout -->
 <section id="logout-section" class="hidden">
     <button onclick="handleLogout()">Logout</button>
 </section>

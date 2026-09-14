@@ -23,6 +23,7 @@ async function handleLogin() {
             adminToken = data.adminToken;
             statusEl.textContent = "Login successful.";
             showLoggedInSections();
+            loadDeviceDropdowns();
         } else {
             statusEl.textContent = "Login failed: " + data.error;
         }
@@ -49,6 +50,34 @@ function handleLogout() {
     document.getElementById("revoke-section").classList.add("hidden");
     document.getElementById("logout-section").classList.add("hidden");
     document.getElementById("login-status").textContent = "";
+}
+
+async function loadDeviceDropdowns() {
+    try {
+        const response = await fetch(`${BASE_URL}/admin/devices`, {
+            method: "GET",
+            headers: {
+                "Authorization": "Bearer " + adminToken,
+                "ngrok-skip-browser-warning": "true"
+            }
+        });
+
+        const devices = await response.json();
+
+        const dropdownIds = ["command-device-id", "history-device-id", "revoke-device-id"];
+        dropdownIds.forEach(id => {
+            const select = document.getElementById(id);
+            select.innerHTML = "";
+            devices.forEach(device => {
+                const option = document.createElement("option");
+                option.value = device.id;
+                option.textContent = `#${device.id} — ${device.hostname} (${device.ipAddress})`;
+                select.appendChild(option);
+            });
+        });
+    } catch (err) {
+        console.error("Could not load device list:", err);
+    }
 }
 
 async function handleSendCommand() {
@@ -161,7 +190,6 @@ async function handleRevoke() {
 
         if (response.ok) {
             statusEl.textContent = "Device token revoked successfully.";
-            document.getElementById("revoke-device-id").value = "";
         } else {
             statusEl.textContent = "Failed: " + data.error;
         }

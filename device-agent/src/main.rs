@@ -8,7 +8,8 @@ use tokio::time::sleep;
 use winreg::enums::*;
 use winreg::RegKey;
 
-const BASE_URL: &str = "http://localhost:8081/device_server_war_exploded";
+const BASE_URL: &str = "https://amply-lagoon-regally.ngrok-free.dev/device_server_war_exploded";
+const PSK: &str = "MY_DEVICE_PSK";
 const REGISTRY_PATH: &str = "SOFTWARE\\DeviceManagementAgent";
 const HEARTBEAT_INTERVAL: u64 = 120;
 
@@ -77,13 +78,7 @@ async fn main() {
 // ---------- PSK loading ----------
 
 fn load_psk() -> String {
-    match fs::read_to_string("psk.txt") {
-        Ok(psk) => psk.trim().to_string(),
-        Err(_) => {
-            eprintln!("ERROR: psk.txt not found. Place your pre-shared key in a file named psk.txt next to the executable.");
-            std::process::exit(1);
-        }
-    }
+    PSK.to_string()
 }
 
 // ---------- Device info collection ----------
